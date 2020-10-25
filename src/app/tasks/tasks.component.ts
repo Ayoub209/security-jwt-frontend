@@ -9,7 +9,8 @@ import { AuthentificationService } from '../authentification.service';
 })
 export class TasksComponent implements OnInit {
     tasks;
-  constructor(private auth:AuthentificationService,private router:Router) { }
+    user;
+  constructor(public auth:AuthentificationService,private router:Router) { }
 
   ngOnInit(){
     this.auth.getTasks().subscribe(data=>{
@@ -18,5 +19,11 @@ export class TasksComponent implements OnInit {
          this.router.navigateByUrl("/login");
     })
   }
+  onLogout(){
+    this.auth.Logout();
+    this.router.navigateByUrl('/login')
+  }
+
+  
 
 }

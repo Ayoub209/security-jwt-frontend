@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { JwtHelper } from 'angular2-jwt';
+import { JwtHelperService } from '@auth0/angular-jwt';
+
+
 
 
 
@@ -11,6 +13,7 @@ export class AuthentificationService {
   private host:string="http://localhost:8080";
   private jwtToken;
   private roles:Array<any>;
+  public username;
   constructor(private http:HttpClient) { }
 
    authLogin(user){
@@ -19,8 +22,14 @@ export class AuthentificationService {
    }
 
    saveToken(jwt){
+     this.jwtToken=jwt;
      localStorage.setItem('token',jwt);
-     
+     let helper=new JwtHelperService();
+     this.roles=helper.decodeToken(this.jwtToken).roles;
+     console.log(this.roles);
+     this.username=helper.decodeToken(this.jwtToken).subject;
+     console.log(this.username);
+
    }
 
    getTasks(){
@@ -40,4 +49,10 @@ export class AuthentificationService {
         return false;
    }
 
+   Logout(){
+     this.jwtToken=null;
+     localStorage.removeItem('token');
+   }
+
+   
 }

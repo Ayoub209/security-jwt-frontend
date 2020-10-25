@@ -1,4 +1,12 @@
+<h2>{{user}}</h2>
+
+<button (click)="onLogout()" class="btn btn-default">Logout</button>
+  
+<button routerLink="/tasks" class="btn btn-default">Tasks</button>
+
 <div class="container">
+    <p></p>
+    <button (click)="onNewTask()" class="btn btn-danger" *ngIf="auth.isAdmin()">New Task</button>
     <table class="table table-striped">
         <tr><th>ID</th><th>Name</th></tr>
         <tr *ngFor="let t of tasks">
@@ -6,4 +14,5 @@
              <td>{{t.name}}</td>
         </tr>
     </table>
+   
 </div>
