@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthentificationService } from '../authentification.service';
 
 @Component({
   selector: 'app-new-task',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewTaskComponent implements OnInit {
 
-  constructor() { }
+  constructor(private auth:AuthentificationService,private router:Router) { }
 
   ngOnInit(): void {
+  }
+
+  addTask(task){
+      this.auth.newTask(task).subscribe(resp=>{
+        this.router.navigateByUrl("/tasks");
+      },err=>{
+        this.router.navigateByUrl("/login");
+      });
   }
 
 }

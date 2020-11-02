@@ -1,1 +1,9 @@
-<p>registration works!</p>
+<form #f="ngForm" (ngSubmit)="addUser(f.value)">
+    <label>Username:</label>
+    <input type="text" ngModel name="username"/>
+    <label>Password:</label>
+    <input type="password" ngModel name="password"/>
+    <label>Confirm Password:</label>
+    <input type="password" ngModel name="repassword"/>
+    <button type="submit">Add User</button>
+</form>

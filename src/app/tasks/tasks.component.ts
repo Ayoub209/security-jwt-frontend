@@ -24,6 +24,12 @@ export class TasksComponent implements OnInit {
     this.router.navigateByUrl('/login')
   }
 
-  
+  userAuthenticate(){
+     this.user=this.auth.username;
+     console.log(this.user);
+  }
+  onNewTask(){
+    this.router.navigateByUrl("/new-task");
+  }
 
 }

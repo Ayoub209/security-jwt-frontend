@@ -1,1 +1,5 @@
-<p>new-task works!</p>
+<form #f="ngForm" (ngSubmit)="addTask(f.value)">
+    <label>Name</label>
+    <input type="text" ngModel name="name"/>
+    <button type="submit">Add Task</button>
+</form>
